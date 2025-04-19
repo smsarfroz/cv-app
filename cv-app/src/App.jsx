@@ -10,6 +10,13 @@ export default function App() {
   const [github, setGithub] = useState('https://github.com/johnsmith')
 
   const [summary, setSummary] = useState('Experienced software developer with over 5 years of expertise in web development and cloud technologies. Passionate about creating clean, efficient, and scalable code. Strong problem-solving skills and ability to work in fast-paced environments.')
+  
+  const [degree, setDegree] = useState('');
+  const [school, setSchool] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [location, setLocation] = useState('');
+
   return (
     <>
       <div className="inputDetails">
@@ -47,6 +54,25 @@ export default function App() {
           <p><label>Summary</label></p>
           <textarea name="" id="summaryTextarea" value={summary} onChange={(e) => setSummary(e.target.value)}></textarea>
         </div>
+
+        <div className="educationDetails">
+          
+          <p className="titleOfDetails">Education</p>
+          <p><label htmlFor="">Degree</label></p>
+          <input type="text" value={degree} onChange={(e) => setDegree(e.target.value)} />
+
+          <p><label htmlFor="">School or University</label></p>
+          <input type="text" value={school} onChange={(e) => setSchool(e.target.value)} />
+
+          <p><label htmlFor="">Start Date</label></p>
+          <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)}/>
+
+          <p><label htmlFor="">End Date</label></p>
+          <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)}/>
+
+          <p><label htmlFor="">Location</label></p>
+          <input type="text" value={location} onChange={(e) => setLocation(e.target.value)}/>
+        </div>
       </div>
 
       <div className="cvPreview">
@@ -59,10 +85,18 @@ export default function App() {
             <p><b>Github: </b> {github} </p>
             <p><b>LinkedIn: </b> {linkedIn} </p>
           </div>
+        </div>
 
-          <div className="profileInfo">
+        <div className="profileInfo">
             <p className="sectionTitle">Profile</p>
             <p>{summary}</p>
+        </div>
+
+        <div className="educationInfo">
+          <p className="sectionTitle">Education</p>
+
+          <div className="newEducation">
+            <h2>{degree}</h2>
           </div>
         </div>
       </div>
