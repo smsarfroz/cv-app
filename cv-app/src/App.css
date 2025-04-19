@@ -2,3 +2,15 @@ p.formLabel {
   margin: 3px 0;
   font-weight: bold;
 }
+.titleOfDetails {
+  font-size: 1.6vw;
+  font-weight: bold;
+  margin: 6px 0;
+}
+#summaryTextarea {
+  resize: vertical;
+}
+.sectionTitle {
+  font-size: 1.8vw;
+  font-weight: bold;
+}

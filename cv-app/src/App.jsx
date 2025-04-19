@@ -9,34 +9,43 @@ export default function App() {
   const [linkedIn, setLinkedIn] = useState('https://linkedin.com/in/johnsmith');
   const [github, setGithub] = useState('https://github.com/johnsmith')
 
+  const [summary, setSummary] = useState('Experienced software developer with over 5 years of expertise in web development and cloud technologies. Passionate about creating clean, efficient, and scalable code. Strong problem-solving skills and ability to work in fast-paced environments.')
   return (
     <>
       <div className="inputDetails">
         <div className="personalDetails">
+          <p className="titleOfDetails">Personal Details</p>
           <label>
             <p className='formLabel'>Full Name</p> 
-            <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} />
           </label>
+            <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} />
           <label>
             <p className='formLabel'>Job Title</p> 
-            <input type="text" value={jobTitle} onChange={(e) => setJobTitle(e.target.value)} />
           </label>
+            <input type="text" value={jobTitle} onChange={(e) => setJobTitle(e.target.value)} />
           <label>
             <p className='formLabel'>Email</p> 
-            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
           </label>
+            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
           <label>
             <p className='formLabel'>Phone Number</p> 
-            <input type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
           </label>
+            <input type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
           <label>
             <p className='formLabel'>LinkedIn Profile</p> 
-            <input type="text" value={linkedIn} onChange={(e) => setLinkedIn(e.target.value)} />
           </label>
+            <input type="text" value={linkedIn} onChange={(e) => setLinkedIn(e.target.value)} />
           <label>
             <p className='formLabel'>Github Profile</p> 
-            <input type="text" value={github} onChange={(e) => setGithub(e.target.value)} />
           </label>
+            <input type="text" value={github} onChange={(e) => setGithub(e.target.value)} />
+        </div>
+
+
+        <div className="profileDetails">
+          <p className="titleOfDetails">Profile</p>
+          <p><label>Summary</label></p>
+          <textarea name="" id="summaryTextarea" value={summary} onChange={(e) => setSummary(e.target.value)}></textarea>
         </div>
       </div>
 
@@ -49,6 +58,11 @@ export default function App() {
             <p><b>Email: </b> {email} </p>
             <p><b>Github: </b> {github} </p>
             <p><b>LinkedIn: </b> {linkedIn} </p>
+          </div>
+
+          <div className="profileInfo">
+            <p className="sectionTitle">Profile</p>
+            <p>{summary}</p>
           </div>
         </div>
       </div>
