@@ -17,6 +17,9 @@ export default function App() {
   const [endDate, setEndDate] = useState('');
   const [location, setLocation] = useState('');
 
+  const [skillCategory, setSkillCategory] = useState('');
+  const [skills, setSkills] = useState('');
+
   return (
     <>
       <div className="inputDetails">
@@ -64,14 +67,24 @@ export default function App() {
           <p><label htmlFor="">School or University</label></p>
           <input type="text" value={school} onChange={(e) => setSchool(e.target.value)} />
 
-          <p><label htmlFor="">Start Date</label></p>
-          <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)}/>
+          <p><label htmlFor="">Start Year</label></p>
+          <input type="text" value={startDate} onChange={(e) => setStartDate(e.target.value)}/>
 
-          <p><label htmlFor="">End Date</label></p>
-          <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)}/>
+          <p><label htmlFor="">End Year</label></p>
+          <input type="text" value={endDate} onChange={(e) => setEndDate(e.target.value)}/>
 
           <p><label htmlFor="">Location</label></p>
           <input type="text" value={location} onChange={(e) => setLocation(e.target.value)}/>
+        </div>
+
+        <div className="skillsDetails">
+          <p className="titleOfDetails">Skills</p>
+
+          <p><label htmlFor="">Skill Category</label></p>
+          <input type="text" value={skillCategory} onChange={(e) => setSkillCategory(e.target.value)}/>
+
+          <p><label htmlFor="">Skills</label></p>
+          <input type="text" value={skills} onChange={(e) => setSkills(e.target.value)} />
         </div>
       </div>
 
@@ -97,6 +110,19 @@ export default function App() {
 
           <div className="newEducation">
             <h2>{degree}</h2>
+              <div className="actualDetails">
+                <span>{school} - <span>{location}</span></span>
+                <p>{startDate} - {endDate}</p>
+              </div>
+          </div>
+        </div>
+
+        <div className="skillsInfo">
+          <p className="sectionTitle">Technical Skills</p>
+
+          <div className="newSkill">
+            <b>{skillCategory}: </b>
+            <span>{skills}</span>
           </div>
         </div>
       </div>
