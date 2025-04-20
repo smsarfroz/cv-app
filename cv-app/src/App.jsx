@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import Education from './components/Education';
 
 export default function App() {
   const [fullName, setFullName] = useState('John Smith');
@@ -11,11 +12,7 @@ export default function App() {
 
   const [summary, setSummary] = useState('Experienced software developer with over 5 years of expertise in web development and cloud technologies. Passionate about creating clean, efficient, and scalable code. Strong problem-solving skills and ability to work in fast-paced environments.')
   
-  const [degree, setDegree] = useState('');
-  const [school, setSchool] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const [location, setLocation] = useState('');
+  
 
   const [skillCategory, setSkillCategory] = useState('');
   const [skills, setSkills] = useState('');
@@ -64,24 +61,7 @@ export default function App() {
           <textarea name="" id="summaryTextarea" value={summary} onChange={(e) => setSummary(e.target.value)}></textarea>
         </div>
 
-        <div className="educationDetails">
-          
-          <p className="titleOfDetails">Education</p>
-          <p><label htmlFor="">Degree</label></p>
-          <input type="text" value={degree} onChange={(e) => setDegree(e.target.value)} />
-
-          <p><label htmlFor="">School or University</label></p>
-          <input type="text" value={school} onChange={(e) => setSchool(e.target.value)} />
-
-          <p><label htmlFor="">Start Year</label></p>
-          <input type="text" value={startDate} onChange={(e) => setStartDate(e.target.value)}/>
-
-          <p><label htmlFor="">End Year</label></p>
-          <input type="text" value={endDate} onChange={(e) => setEndDate(e.target.value)}/>
-
-          <p><label htmlFor="">Location</label></p>
-          <input type="text" value={location} onChange={(e) => setLocation(e.target.value)}/>
-        </div>
+        <Education />
 
         <div className="skillsDetails">
           <p className="titleOfDetails">Skills</p>
@@ -145,17 +125,7 @@ export default function App() {
           </div>
         </div>
         
-        <div className="educationInfo">
-          <p className="sectionTitle">Education</p>
-
-          <div className="newEducation">
-            <h2>{degree}</h2>
-              <div className="actualDetails">
-                <span>{school} - <span>{location}</span></span>
-                <p>{startDate} - {endDate}</p>
-              </div>
-          </div>
-        </div>
+        
 
         <div className="skillsInfo">
           <p className="sectionTitle">Technical Skills</p>
