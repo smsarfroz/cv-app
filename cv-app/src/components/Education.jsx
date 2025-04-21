@@ -12,6 +12,7 @@ function DetailedCard({
   handleDelete,
   handleSave,
   handleChange,
+  setEditId
 }) {
   return (
     <>
@@ -58,7 +59,7 @@ function DetailedCard({
       <div>
         <button onClick={() => handleDelete(id)}>Delete</button>
         <button onClick={handleSave}>Save</button>
-        <button>Cancel</button>
+        <button onClick={() => setEditId(null)}>Cancel</button>
       </div>
     </>
   );
@@ -71,7 +72,7 @@ function ClosedCard({
     <>
       <h2>{education.degree}</h2>
       <div>
-        <button onClick={handleEdit}>Edit</button>
+        <button onClick={() => handleEdit(education.id)}>Edit</button>
       </div>
     </>
   );
@@ -83,6 +84,8 @@ function Card({
   handleDelete,
   handleEdit,
   handleSave,
+  id,
+  setEditId
 }) {
   return (
     <>
@@ -92,9 +95,11 @@ function Card({
           handleDelete={handleDelete}
           handleSave={handleSave}
           handleChange={handleChange}
+          setEditId={setEditId}
+          key={id}
         />
       ) : (
-        <ClosedCard education={education} handleEdit={handleEdit} />
+        <ClosedCard education={education} handleEdit={handleEdit} key={id}/>
       )}
     </>
   );
@@ -178,6 +183,7 @@ export default function Education() {
     const educationToEdit = educationArray.find(
       (education) => education.id === id
     );
+    console.log(educationToEdit);
     if (educationToEdit) {
       setDegree(educationToEdit.degree);
       setSchool(educationToEdit.school);
@@ -223,6 +229,8 @@ export default function Education() {
               handleDelete={handleDelete}
               handleEdit={handleEdit}
               handleSave={handleSave}
+              id={education.id}
+              setEditId={setEditId}
               key={education.id}
             />
           );
@@ -237,23 +245,20 @@ export default function Education() {
         <p className="sectionTitle">Education</p>
 
         {educationArray.length > 0 ? educationArray.map((education) => {
-          <div className="newEducation">
-            <h2>{education.degree}</h2>
-            <div className="actualDetails">
-              <span>
-                {education.school} - <span>{education.location}</span>
-              </span>
-              <p>
-                {education.startDate} - {education.endDate}
-              </p>
-            </div>
+          return (
+            <div className="newEducation" key={education.id}>
+              <h2>{education.degree}</h2>
+              <div className="actualDetails">
+                <span>
+                  {education.school} - <span>{education.location}</span>
+                </span>
+                <p>
+                  {education.startDate} - {education.endDate}
+                </p>
+              </div>
 
-            <div>
-              <button onChange={() => handleEdit(education.id)}>Delete</button>
-              <button onChange={() => handleSave(education.id)}>Save</button>
-              <button>Cancel</button>
             </div>
-          </div>;
+          );
         }) : null
         }
       </div>
