@@ -204,13 +204,10 @@ export default function Education() {
       endDate: null,
       location: null,
     }
-    console.log(newEducation);
-    console.log(educationArray);
 
     setEditId(newEducation.id);
-    setEducationArray(...educationArray, newEducation);
+    setEducationArray([...educationArray, newEducation]);
 
-    console.log(educationArray);
   }
   return (
     <>
@@ -226,6 +223,7 @@ export default function Education() {
               handleDelete={handleDelete}
               handleEdit={handleEdit}
               handleSave={handleSave}
+              key={education.id}
             />
           );
         }) : null
