@@ -165,7 +165,7 @@ export default function Education() {
           endDate: endDate,
           location: location,
         };
-        setEducationArray(newEducation);
+        setEducationArray(...educationArray, newEducation);
       }
       setDegree("");
       setSchool("");
@@ -196,7 +196,7 @@ export default function Education() {
     }
   }
   function pushNewCardtoArray() {
-    const newEducationCard = {
+    const newEducation = {
       id: Date.now(),
       degree: null,
       school: null,
@@ -204,23 +204,33 @@ export default function Education() {
       endDate: null,
       location: null,
     }
-    setEducationArray(...educationArray, newEducationCard);
-    setEditId(newEducationCard.id);
+    console.log(newEducation);
+    console.log(educationArray);
+
+    setEditId(newEducation.id);
+    setEducationArray(...educationArray, newEducation);
+
+    console.log(educationArray);
   }
   return (
     <>
       <div className="educationDetails">
         <p className="titleOfDetails">Education</p>
-        {educationArray.map((education) => {
-          <Card
-            education={education}
-            isOpen={editId === education.id ? true : false}
-            handleChange={handleChange}
-            handleDelete={handleDelete}
-            handleEdit={handleEdit}
-            handleSave={handleSave}
-          />;
-        })}
+        {
+        educationArray.length > 0 ? educationArray.map((education) => {
+          return (
+            <Card
+              education={education}
+              isOpen={editId === education.id ? true : false}
+              handleChange={handleChange}
+              handleDelete={handleDelete}
+              handleEdit={handleEdit}
+              handleSave={handleSave}
+            />
+          );
+        }) : null
+        
+        }
 
         <button onClick={pushNewCardtoArray}>Add Education</button>
       </div>
@@ -228,7 +238,7 @@ export default function Education() {
       <div className="educationInfo">
         <p className="sectionTitle">Education</p>
 
-        {educationArray.map((education) => {
+        {educationArray.length > 0 ? educationArray.map((education) => {
           <div className="newEducation">
             <h2>{education.degree}</h2>
             <div className="actualDetails">
@@ -246,7 +256,8 @@ export default function Education() {
               <button>Cancel</button>
             </div>
           </div>;
-        })}
+        }) : null
+        }
       </div>
     </>
   );
