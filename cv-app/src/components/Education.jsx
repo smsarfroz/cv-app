@@ -195,6 +195,18 @@ export default function Education() {
       setEditId(null);
     }
   }
+  function pushNewCardtoArray() {
+    const newEducationCard = {
+      id: Date.now(),
+      degree: null,
+      school: null,
+      startDate: null,
+      endDate: null,
+      location: null,
+    }
+    setEducationArray(...educationArray, newEducationCard);
+    setEditId(newEducationCard.id);
+  }
   return (
     <>
       <div className="educationDetails">
@@ -209,6 +221,8 @@ export default function Education() {
             handleSave={handleSave}
           />;
         })}
+
+        <button onClick={pushNewCardtoArray}>Add Education</button>
       </div>
 
       <div className="educationInfo">
