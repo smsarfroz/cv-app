@@ -12,7 +12,7 @@ function DetailedCard({
   school,
   startDate,
   endDate,
-  location
+  location,
 }) {
   return (
     <>
@@ -63,10 +63,7 @@ function DetailedCard({
     </>
   );
 }
-function ClosedCard({
-  education,
-  handleEdit
-}) {
+function ClosedCard({ education, handleEdit }) {
   return (
     <>
       <h2>{education.degree}</h2>
@@ -89,7 +86,7 @@ function Card({
   school,
   startDate,
   endDate,
-  location
+  location,
 }) {
   return (
     <>
@@ -108,20 +105,29 @@ function Card({
           key={id}
         />
       ) : (
-        <ClosedCard education={education} handleEdit={handleEdit} key={id}/>
+        <ClosedCard education={education} handleEdit={handleEdit} key={id} />
       )}
     </>
   );
 }
 export default function Education() {
-  const [degree, setDegree] = useState("");
-  const [school, setSchool] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [location, setLocation] = useState("");
-  const [educationArray, setEducationArray] = useState([]);
+  const [degree, setDegree] = useState("Master of Science in Computer Science");
+  const [school, setSchool] = useState("University of Technology");
+  const [startDate, setStartDate] = useState("2015");
+  const [endDate, setEndDate] = useState("2017");
+  const [location, setLocation] = useState("Boston,MA");
+  const newEducation = {
+    id: Date.now(),
+    degree: degree,
+    school: school,
+    startDate: startDate,
+    endDate: endDate,
+    location: location,
+  };
+  const [educationArray, setEducationArray] = useState([newEducation]);
   const [editId, setEditId] = useState(null);
 
+  // handleSave();
   function handleChange(e) {
     const { name, value } = e.target;
     switch (name) {
@@ -222,39 +228,37 @@ export default function Education() {
       startDate: null,
       endDate: null,
       location: null,
-    }
+    };
 
     setEditId(newEducation.id);
     setEducationArray([...educationArray, newEducation]);
-
   }
   return (
     <>
       <div className="educationDetails">
         <p className="titleOfDetails">Education</p>
-        {
-        educationArray.length > 0 ? educationArray.map((education) => {
-          return (
-            <Card
-              education={education}
-              isOpen={editId === education.id ? true : false}
-              handleChange={handleChange}
-              handleDelete={handleDelete}
-              handleEdit={handleEdit}
-              handleSave={handleSave}
-              id={education.id}
-              setEditId={setEditId}
-              degree={degree}
-              school={school}
-              startDate={startDate}
-              endDate={endDate}
-              location={location}
-              key={education.id}
-            />
-          );
-        }) : null
-        
-        }
+        {educationArray.length > 0
+          ? educationArray.map((education) => {
+              return (
+                <Card
+                  education={education}
+                  isOpen={editId === education.id ? true : false}
+                  handleChange={handleChange}
+                  handleDelete={handleDelete}
+                  handleEdit={handleEdit}
+                  handleSave={handleSave}
+                  id={education.id}
+                  setEditId={setEditId}
+                  degree={degree}
+                  school={school}
+                  startDate={startDate}
+                  endDate={endDate}
+                  location={location}
+                  key={education.id}
+                />
+              );
+            })
+          : null}
 
         <button onClick={pushNewCardtoArray}>Add Education</button>
       </div>
@@ -262,23 +266,23 @@ export default function Education() {
       <div className="educationInfo">
         <p className="sectionTitle">Education</p>
 
-        {educationArray.length > 0 ? educationArray.map((education) => {
-          return (
-            <div className="newEducation" key={education.id}>
-              <h2>{education.degree}</h2>
-              <div className="actualDetails">
-                <span>
-                  {education.school} - <span>{education.location}</span>
-                </span>
-                <p>
-                  {education.startDate} - {education.endDate}
-                </p>
-              </div>
-
-            </div>
-          );
-        }) : null
-        }
+        {educationArray.length > 0
+          ? educationArray.map((education) => {
+              return (
+                <div className="newEducation" key={education.id}>
+                  <h2>{education.degree}</h2>
+                  <div className="actualDetails">
+                    <span>
+                      {education.school} - <span>{education.location}</span>
+                    </span>
+                    <p>
+                      {education.startDate} - {education.endDate}
+                    </p>
+                  </div>
+                </div>
+              );
+            })
+          : null}
       </div>
     </>
   );
