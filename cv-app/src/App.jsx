@@ -2,12 +2,9 @@ import { useState } from 'react'
 import './App.css'
 import Education from './components/Education';
 import Personal from './components/Personal';
+import Profile from './components/Profile';
 
 export default function App() {
-  
-
-  const [summary, setSummary] = useState('Experienced software developer with over 5 years of expertise in web development and cloud technologies. Passionate about creating clean, efficient, and scalable code. Strong problem-solving skills and ability to work in fast-paced environments.')
-  
   
 
   const [skillCategory, setSkillCategory] = useState('');
@@ -25,11 +22,7 @@ export default function App() {
         
         <Personal />
         
-        <div className="profileDetails">
-          <p className="titleOfDetails">Profile</p>
-          <p><label>Summary</label></p>
-          <textarea name="" id="summaryTextarea" value={summary} onChange={(e) => setSummary(e.target.value)}></textarea>
-        </div>
+        <Profile />
 
         <Education />
 
@@ -70,11 +63,7 @@ export default function App() {
       <div className="cvPreview">
         
 
-        <div className="profileInfo">
-            <p className="sectionTitle">Profile</p>
-            <p>{summary}</p>
-        </div>
-
+        
         <div className="workExperienceInfo">
           <h3>{jobExperienceTitle}</h3>
           <div className="actualDetails">
