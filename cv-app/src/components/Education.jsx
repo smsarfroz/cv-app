@@ -202,13 +202,17 @@ export default function Education() {
     }
   }
   function handleDelete(id) {
-    console.log(id);
     setEducationArray(
       educationArray.filter((education) => education.id !== id)
     );
     if (editId === id) {
       setEditId(null);
     }
+    setDegree("");
+    setSchool("");
+    setStartDate("");
+    setEndDate("");
+    setLocation("");
   }
   function pushNewCardtoArray() {
     const newEducation = {
