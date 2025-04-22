@@ -4,19 +4,18 @@ import "../App.css";
 
 function DetailedCard({
   id,
+  handleDelete,
+  handleSave,
+  handleChange,
+  setEditId,
   degree,
   school,
   startDate,
   endDate,
-  location,
-  handleDelete,
-  handleSave,
-  handleChange,
-  setEditId
+  location
 }) {
   return (
     <>
-      <h2>{degree}</h2>
       <p>
         <label htmlFor="">Degree</label>
       </p>
@@ -85,13 +84,22 @@ function Card({
   handleEdit,
   handleSave,
   id,
-  setEditId
+  setEditId,
+  degree,
+  school,
+  startDate,
+  endDate,
+  location
 }) {
   return (
     <>
       {isOpen ? (
         <DetailedCard
-          education={education}
+          degree={degree}
+          school={school}
+          startDate={startDate}
+          endDate={endDate}
+          location={location}
           handleDelete={handleDelete}
           handleSave={handleSave}
           handleChange={handleChange}
@@ -231,6 +239,11 @@ export default function Education() {
               handleSave={handleSave}
               id={education.id}
               setEditId={setEditId}
+              degree={degree}
+              school={school}
+              startDate={startDate}
+              endDate={endDate}
+              location={location}
               key={education.id}
             />
           );
