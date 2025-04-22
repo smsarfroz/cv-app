@@ -95,6 +95,7 @@ function Card({
     <>
       {isOpen ? (
         <DetailedCard
+          id={id}
           degree={degree}
           school={school}
           startDate={startDate}
@@ -119,7 +120,6 @@ export default function Education() {
   const [endDate, setEndDate] = useState("");
   const [location, setLocation] = useState("");
   const [educationArray, setEducationArray] = useState([]);
-  // const [isEditing, setIsEditing] = useState(false);
   const [editId, setEditId] = useState(null);
 
   function handleChange(e) {
@@ -202,6 +202,7 @@ export default function Education() {
     }
   }
   function handleDelete(id) {
+    console.log(id);
     setEducationArray(
       educationArray.filter((education) => education.id !== id)
     );
