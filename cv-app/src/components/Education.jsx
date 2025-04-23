@@ -197,7 +197,6 @@ export default function Education() {
     const educationToEdit = educationArray.find(
       (education) => education.id === id
     );
-    console.log(educationToEdit);
     if (educationToEdit) {
       setDegree(educationToEdit.degree);
       setSchool(educationToEdit.school);
