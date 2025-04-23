@@ -18,9 +18,8 @@ function Card({
   handleSave,
   handleAddNewResponsibility,
   responsibilityArray,
-  handleDeleteResponsibility
+  handleDeleteResponsibility,
 }) {
-  
   return (
     <>
       {isOpen ? (
@@ -59,19 +58,27 @@ function Card({
           <p>
             <label htmlFor="">Responsibilities</label>
           </p>
-          {
-            responsibilityArray.map(responsibility => {
-              return (
-                <div className="responsiblity" key={responsibility.id}>
-                  <input type="text" value={responsibility} onChange={handleChange} />
-                  <button onClick={() => handleDeleteResponsibility(responsibility.id)}>X</button>
-                </div>
-              );
-            })
-          }
+          {responsibilityArray.map((responsibility) => {
+            return (
+              <div className="responsiblity" key={responsibility.id}>
+                <input
+                  type="text"
+                  value={responsibility}
+                  onChange={handleChange}
+                />
+                <button
+                  onClick={() => handleDeleteResponsibility(responsibility.id)}
+                >
+                  X
+                </button>
+              </div>
+            );
+          })}
 
           <div>
-            <button onClick={handleAddNewResponsibility}>Add Responsibility</button>
+            <button onClick={handleAddNewResponsibility}>
+              Add Responsibility
+            </button>
           </div>
           <div>
             <button onClick={() => handleDelete(id)}>Delete</button>
@@ -100,17 +107,17 @@ export default function WorkExperience() {
   const [companyLocation, setCompanyLocation] = useState("San Francisco,CA");
   const [editId, setEditId] = useState(null);
   const resp1 = {
-    id: Date.now(),
+    id: crypto.randomUUID(),
     responsibility:
       "Led a team of 5 developers to deliver high-quality web applications",
   };
   const resp2 = {
-    id: Date.now(),
+    id: crypto.randomUUID(),
     responsibility:
       "Implemented CI/CD pipelines that reduced deployment time by 40%",
   };
   const resp3 = {
-    id: Date.now(),
+    id: crypto.randomUUID(),
     responsibility: "Refactored legacy codebase, improving performance by 30%",
   };
   const [responsibilityArray, setResponsibilityArray] = useState([
@@ -236,12 +243,14 @@ export default function WorkExperience() {
   function handleAddNewResponsibility() {
     const newResponsibility = {
       id: Date.now(),
-      responsibility: null
-    }
+      responsibility: null,
+    };
     setResponsibilityArray([...responsibilityArray, newResponsibility]);
   }
   function handleDeleteResponsibility(id) {
-    setResponsibilityArray(responsibilityArray.filter(responsibility => responsibility.id !== id));
+    setResponsibilityArray(
+      responsibilityArray.filter((responsibility) => responsibility.id !== id)
+    );
   }
   return (
     <>
@@ -249,25 +258,27 @@ export default function WorkExperience() {
         <p className="titleOfDetails">Work Experience</p>
         {workArray.length > 0
           ? workArray.map((work) => {
-              return <Card 
-              key={work.id}
-              id={work.id}
-              isOpen={editId === work.id ? true: false}
-              work={work}
-              jobExperienceTitle={jobExperienceTitle}
-              company={company}
-              startJob={startJob}
-              endJob={endJob}
-              companyLocation={companyLocation}
-              handleChange={handleChange}
-              handleCancel={handleCancel}
-              handleDelete={handleDelete}
-              handleEdit={handleEdit}
-              handleSave={handleSave}
-              handleAddNewResponsibility={handleAddNewResponsibility}
-              responsibilityArray={responsibilityArray}
-              handleDeleteResponsibility={handleDeleteResponsibility}
-              />;
+              return (
+                <Card
+                  key={work.id}
+                  id={work.id}
+                  isOpen={editId === work.id ? true : false}
+                  work={work}
+                  jobExperienceTitle={jobExperienceTitle}
+                  company={company}
+                  startJob={startJob}
+                  endJob={endJob}
+                  companyLocation={companyLocation}
+                  handleChange={handleChange}
+                  handleCancel={handleCancel}
+                  handleDelete={handleDelete}
+                  handleEdit={handleEdit}
+                  handleSave={handleSave}
+                  handleAddNewResponsibility={handleAddNewResponsibility}
+                  responsibilityArray={responsibilityArray}
+                  handleDeleteResponsibility={handleDeleteResponsibility}
+                />
+              );
             })
           : null}
         <button onClick={handlePushNewWork}>Add Experience</button>
@@ -290,13 +301,11 @@ export default function WorkExperience() {
                           {startJob} - {endJob}
                         </p>
                         <ul>
-                          { 
-                            responsibilityArray.map(responsibility => {
-                              return (
-                                <li key={responsibility.id}>{responsibility}</li>
-                              );
-                            })
-                          }
+                          {responsibilityArray.map((responsibility) => {
+                            return (
+                              <li key={responsibility.id}>{responsibility}</li>
+                            );
+                          })}
                         </ul>
                       </div>
                     </>
@@ -312,13 +321,11 @@ export default function WorkExperience() {
                           {work.startJob} - {work.endJob}
                         </p>
                         <ul>
-                          {
-                            work.responsibilityArray.map(responsibility => {
-                              return (
-                                <li key={responsibility.id}>{responsibility}</li>
-                              );
-                            })
-                          }
+                          {work.responsibilityArray.map((responsibility) => {
+                            return (
+                              <li key={responsibility.id}>{responsibility}</li>
+                            );
+                          })}
                         </ul>
                       </div>
                     </>
