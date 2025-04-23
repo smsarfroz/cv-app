@@ -14,48 +14,46 @@ function Card({
   skill,
   isOpen,
   setSkillCategory,
-  setSkills
+  setSkills,
 }) {
   return (
     <>
-      {
-        isOpen ? (
-          <>
-            <p>
-              <label htmlFor="">Skill Category</label>
-            </p>
-            <input
-              type="text"
-              name="skillCategory"
-              value={skillCategory}
-              onChange={handleChange}
-            />
-            <p>
-              <label htmlFor="">Skills</label>
-            </p>
-            <input
-              type="text"
-              name="skills"
-              value={skills}
-              onChange={handleChange}
-            />
+      {isOpen ? (
+        <>
+          <p>
+            <label htmlFor="">Skill Category</label>
+          </p>
+          <input
+            type="text"
+            name="skillCategory"
+            value={skillCategory}
+            onChange={handleChange}
+          />
+          <p>
+            <label htmlFor="">Skills</label>
+          </p>
+          <input
+            type="text"
+            name="skills"
+            value={skills}
+            onChange={handleChange}
+          />
 
-            <div>
-              <button onClick={() => handleDelete(id)}>Delete</button>
-              <button onClick={handleSave}>Save</button>
-              <button onClick={handleCancel}>Cancel</button>
-            </div>
-          </>
-        ) : (
-          <>
-            <h2>{skill.skillCategory}:</h2>
-            <p>{skill.skills}</p>
-            <div>
-              <button onClick={() => handleEdit(skill.id)}>Edit</button>
-            </div>
-          </>
-        )
-      }
+          <div>
+            <button onClick={() => handleDelete(id)}>Delete</button>
+            <button onClick={handleSave}>Save</button>
+            <button onClick={handleCancel}>Cancel</button>
+          </div>
+        </>
+      ) : (
+        <>
+          <h2>{skill.skillCategory}:</h2>
+          <p>{skill.skills}</p>
+          <div>
+            <button onClick={() => handleEdit(skill.id)}>Edit</button>
+          </div>
+        </>
+      )}
     </>
   );
 }
@@ -75,10 +73,10 @@ export default function Skills() {
   function handleChange(e) {
     const { name, value } = e.target;
     switch (name) {
-      case 'skillCategory':
+      case "skillCategory":
         setSkillCategory(value);
         break;
-      case 'skills':
+      case "skills":
         setSkills(value);
         break;
       default:
@@ -163,7 +161,7 @@ export default function Skills() {
                   skills={skills}
                   skill={skill}
                   setEditId={setEditId}
-                  isOpen={editId === skill.id ? true: false}
+                  isOpen={editId === skill.id ? true : false}
                   setSkillCategory={setSkillCategory}
                   setSkills={setSkills}
                 />
@@ -180,8 +178,17 @@ export default function Skills() {
           ? skillArray.map((skill) => {
               return (
                 <div className="newSkill" key={skill.id}>
-                  <b>{skill.skillCategory}: </b>
-                  <span>{skill.skills}</span>
+                  {editId === skill.id ? (
+                    <>
+                      <b>{skillCategory}: </b>
+                      <span>{skills}</span>
+                    </>
+                  ) : (
+                    <>
+                      <b>{skill.skillCategory}: </b>
+                      <span>{skill.skills}</span>
+                    </>
+                  )}
                 </div>
               );
             })

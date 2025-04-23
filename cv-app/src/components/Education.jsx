@@ -269,15 +269,31 @@ export default function Education() {
           ? educationArray.map((education) => {
               return (
                 <div className="newEducation" key={education.id}>
-                  <h2>{education.degree}</h2>
-                  <div className="actualDetails">
-                    <span>
-                      {education.school} - <span>{education.location}</span>
-                    </span>
-                    <p>
-                      {education.startDate} - {education.endDate}
-                    </p>
-                  </div>
+                  {editId === education.id ? (
+                    <>
+                      <h2>{degree}</h2>
+                      <div className="actualDetails">
+                        <span>
+                          {school} - <span>{location}</span>
+                        </span>
+                        <p>
+                          {startDate} - {endDate}
+                        </p>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <h2>{education.degree}</h2>
+                      <div className="actualDetails">
+                        <span>
+                          {education.school} - <span>{education.location}</span>
+                        </span>
+                        <p>
+                          {education.startDate} - {education.endDate}
+                        </p>
+                      </div>
+                    </>
+                  )}
                 </div>
               );
             })

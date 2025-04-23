@@ -17,7 +17,7 @@ export default function App() {
 
         <Education />
 
-        {/* <Skills /> */}
+        <Skills />
         
         {/* <WorkExperience /> */}
         
