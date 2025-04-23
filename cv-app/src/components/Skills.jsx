@@ -13,8 +13,6 @@ function Card({
   skills,
   skill,
   isOpen,
-  setSkillCategory,
-  setSkills,
 }) {
   return (
     <>
