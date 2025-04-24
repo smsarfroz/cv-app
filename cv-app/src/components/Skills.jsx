@@ -2,6 +2,33 @@ import React from "react";
 import { useState } from "react";
 import "../App.css";
 
+function skillPreviewJsx({skillArray, editId, skillCategory, skills}) {
+  return (
+    <div className="skillsInfo">
+      <p className="sectionTitle">Technical Skills</p>
+
+      {skillArray.length > 0
+        ? skillArray.map((skill) => {
+            return (
+              <div className="newSkill" key={skill.id}>
+                {editId === skill.id ? (
+                  <>
+                    <b>{skillCategory}: </b>
+                    <span>{skills}</span>
+                  </>
+                ) : (
+                  <>
+                    <b>{skill.skillCategory}: </b>
+                    <span>{skill.skills}</span>
+                  </>
+                )}
+              </div>
+            );
+          })
+        : null}
+    </div>
+  );
+}
 function Card({
   id,
   handleChange,
@@ -171,29 +198,7 @@ export default function Skills() {
         <button onClick={pushNewCardToArray}>+ Add Skill</button>
       </div>
 
-      <div className="skillsInfo">
-        <p className="sectionTitle">Technical Skills</p>
-
-        {skillArray.length > 0
-          ? skillArray.map((skill) => {
-              return (
-                <div className="newSkill" key={skill.id}>
-                  {editId === skill.id ? (
-                    <>
-                      <b>{skillCategory}: </b>
-                      <span>{skills}</span>
-                    </>
-                  ) : (
-                    <>
-                      <b>{skill.skillCategory}: </b>
-                      <span>{skill.skills}</span>
-                    </>
-                  )}
-                </div>
-              );
-            })
-          : null}
-      </div>
+      <skillPreviewJsx />
     </>
   );
 }
