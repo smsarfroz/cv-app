@@ -1,7 +1,47 @@
-import { useState } from "react";
 import React from "react";
 import "../App.css";
 
+function EducationPreview({educationArray, editId, degree, school, startDate, endDate, location}) {
+  return (
+    <div className="educationInfo">
+        <p className="sectionTitle">Education</p>
+
+        {educationArray.length > 0
+          ? educationArray.map((education) => {
+              return (
+                <div className="newEducation" key={education.id}>
+                  {editId === education.id ? (
+                    <>
+                      <h2>{degree}</h2>
+                      <div className="actualDetails">
+                        <span>
+                          {school} - <span>{location}</span>
+                        </span>
+                        <p>
+                          {startDate} - {endDate}
+                        </p>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <h2>{education.degree}</h2>
+                      <div className="actualDetails">
+                        <span>
+                          {education.school} - <span>{education.location}</span>
+                        </span>
+                        <p>
+                          {education.startDate} - {education.endDate}
+                        </p>
+                      </div>
+                    </>
+                  )}
+                </div>
+              );
+            })
+          : null}
+      </div>
+  );
+}
 function DetailedCard({
   id,
   handleDelete,
@@ -110,22 +150,8 @@ function Card({
     </>
   );
 }
-export default function Education() {
-  const [degree, setDegree] = useState("Master of Science in Computer Science");
-  const [school, setSchool] = useState("University of Technology");
-  const [startDate, setStartDate] = useState("2015");
-  const [endDate, setEndDate] = useState("2017");
-  const [location, setLocation] = useState("Boston,MA");
-  const newEducation = {
-    id: Date.now(),
-    degree: degree,
-    school: school,
-    startDate: startDate,
-    endDate: endDate,
-    location: location,
-  };
-  const [educationArray, setEducationArray] = useState([newEducation]);
-  const [editId, setEditId] = useState(null);
+export default function Education({educationArray, setEducationArray, editId, setEditId, degree, setDegree, school, setSchool, startDate, setStartDate, endDate, setEndDate, location, setLocation}) {
+  
 
   // handleSave();
   function handleChange(e) {
@@ -262,43 +288,8 @@ export default function Education() {
         <button onClick={pushNewCardtoArray}>Add Education</button>
       </div>
 
-      <div className="educationInfo">
-        <p className="sectionTitle">Education</p>
-
-        {educationArray.length > 0
-          ? educationArray.map((education) => {
-              return (
-                <div className="newEducation" key={education.id}>
-                  {editId === education.id ? (
-                    <>
-                      <h2>{degree}</h2>
-                      <div className="actualDetails">
-                        <span>
-                          {school} - <span>{location}</span>
-                        </span>
-                        <p>
-                          {startDate} - {endDate}
-                        </p>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <h2>{education.degree}</h2>
-                      <div className="actualDetails">
-                        <span>
-                          {education.school} - <span>{education.location}</span>
-                        </span>
-                        <p>
-                          {education.startDate} - {education.endDate}
-                        </p>
-                      </div>
-                    </>
-                  )}
-                </div>
-              );
-            })
-          : null}
-      </div>
     </>
   );
 }
+
+export { EducationPreview }

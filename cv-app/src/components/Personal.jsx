@@ -1,15 +1,49 @@
 import React from "react";
-import { useState } from "react";
 import "../App.css";
 
-export default function Personal() {
-  const [fullName, setFullName] = useState("John Smith");
-  const [jobTitle, setJobTitle] = useState("Full Stack Developer");
-  const [email, setEmail] = useState("john.smith@example.com");
-  const [phoneNumber, setPhoneNumber] = useState("+1 (555) 123-4567");
-  const [linkedIn, setLinkedIn] = useState("https://linkedin.com/in/johnsmith");
-  const [github, setGithub] = useState("https://github.com/johnsmith");
-
+function PersonalPreview({
+  fullName,
+  jobTitle,
+  phoneNumber,
+  email,
+  github,
+  linkedIn,
+}) {
+  return (
+    <div className="personalDetailsPreview">
+      <h1>{fullName}</h1>
+      <h3>{jobTitle}</h3>
+      <div className="reachMeInfo">
+        <p>
+          <b>Phone: </b> {phoneNumber}{" "}
+        </p>
+        <p>
+          <b>Email: </b> {email}{" "}
+        </p>
+        <p>
+          <b>Github: </b> {github}{" "}
+        </p>
+        <p>
+          <b>LinkedIn: </b> {linkedIn}{" "}
+        </p>
+      </div>
+    </div>
+  );
+}
+export default function Personal({
+  fullName,
+  setFullName,
+  jobTitle,
+  setJobTitle,
+  phoneNumber,
+  setPhoneNumber,
+  email,
+  setEmail,
+  github,
+  setGithub,
+  linkedIn,
+  setLinkedIn,
+}) {
   return (
     <>
       <div className="personalDetails">
@@ -63,25 +97,8 @@ export default function Personal() {
           onChange={(e) => setGithub(e.target.value)}
         />
       </div>
-
-      <div className="personalDetailsPreview">
-        <h1>{fullName}</h1>
-        <h3>{jobTitle}</h3>
-        <div className="reachMeInfo">
-          <p>
-            <b>Phone: </b> {phoneNumber}{" "}
-          </p>
-          <p>
-            <b>Email: </b> {email}{" "}
-          </p>
-          <p>
-            <b>Github: </b> {github}{" "}
-          </p>
-          <p>
-            <b>LinkedIn: </b> {linkedIn}{" "}
-          </p>
-        </div>
-      </div>
     </>
   );
 }
+
+export { PersonalPreview };
