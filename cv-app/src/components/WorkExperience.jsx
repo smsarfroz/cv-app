@@ -19,6 +19,7 @@ function Card({
   handleAddNewResponsibility,
   responsibilityArray,
   handleDeleteResponsibility,
+  handleResponsiblityChange
 }) {
   return (
     <>
@@ -58,16 +59,17 @@ function Card({
           <p>
             <label htmlFor="">Responsibilities</label>
           </p>
-          {responsibilityArray.map((responsibility) => {
+          {responsibilityArray.map((responsibilityObject) => {
             return (
-              <div className="responsiblity" key={responsibility.id}>
+              <div className="responsiblity" key={responsibilityObject.id}>
                 <input
                   type="text"
-                  value={responsibility}
-                  onChange={handleChange}
+                  name="responsibility"
+                  value={responsibilityObject.responsibility}
+                  onChange={(event) => handleResponsiblityChange(responsibilityObject.id , event)}
                 />
                 <button
-                  onClick={() => handleDeleteResponsibility(responsibility.id)}
+                  onClick={() => handleDeleteResponsibility(responsibilityObject.id)}
                 >
                   X
                 </button>
@@ -106,6 +108,7 @@ export default function WorkExperience() {
   const [endJob, setEndJob] = useState("Present");
   const [companyLocation, setCompanyLocation] = useState("San Francisco,CA");
   const [editId, setEditId] = useState(null);
+  // const [responsibilityState, setResponsibilityState] = useState('');
   const resp1 = {
     id: crypto.randomUUID(),
     responsibility:
@@ -135,7 +138,19 @@ export default function WorkExperience() {
     responsibilityArray: responsibilityArray,
   };
   const [workArray, setWorkArray] = useState([newWork]);
-
+  function handleResponsiblityChange(id, e) {
+    const newArray = responsibilityArray.map(responsiblityObject => {
+      if (responsiblityObject.id === id) {
+        return {
+          ...responsiblityObject,
+          responsibility: e.target.value
+        }
+      } else {
+        return responsiblityObject;
+      }
+    })
+    setResponsibilityArray(newArray);
+  }
   function handleChange(e) {
     const { name, value } = e.target;
     switch (name) {
@@ -249,7 +264,7 @@ export default function WorkExperience() {
   }
   function handleDeleteResponsibility(id) {
     setResponsibilityArray(
-      responsibilityArray.filter((responsibility) => responsibility.id !== id)
+      responsibilityArray.filter((responsibilityObject) => responsibilityObject.id !== id)
     );
   }
   return (
@@ -277,6 +292,7 @@ export default function WorkExperience() {
                   handleAddNewResponsibility={handleAddNewResponsibility}
                   responsibilityArray={responsibilityArray}
                   handleDeleteResponsibility={handleDeleteResponsibility}
+                  handleResponsiblityChange={handleResponsiblityChange}
                 />
               );
             })
@@ -301,9 +317,9 @@ export default function WorkExperience() {
                           {startJob} - {endJob}
                         </p>
                         <ul>
-                          {responsibilityArray.map((responsibility) => {
+                          {responsibilityArray.map((responsibilityObject) => {
                             return (
-                              <li key={responsibility.id}>{responsibility}</li>
+                              <li key={responsibilityObject.id}>{responsibilityObject.responsibility}</li>
                             );
                           })}
                         </ul>
@@ -321,9 +337,9 @@ export default function WorkExperience() {
                           {work.startJob} - {work.endJob}
                         </p>
                         <ul>
-                          {work.responsibilityArray.map((responsibility) => {
+                          {work.responsibilityArray.map((responsibilityObject) => {
                             return (
-                              <li key={responsibility.id}>{responsibility}</li>
+                              <li key={responsibilityObject.id}>{responsibilityObject.responsibility}</li>
                             );
                           })}
                         </ul>
