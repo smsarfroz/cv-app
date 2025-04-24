@@ -131,6 +131,8 @@ export default function Skills() {
   }
 
   function pushNewCardToArray() {
+    setSkillCategory(null);
+    setSkills(null);
     const newSkill = {
       id: Date.now(),
       skillCategory: null,

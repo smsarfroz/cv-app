@@ -32,6 +32,7 @@ function Card({
           </p>
           <input
             type="text"
+            name="jobExperienceTitle"
             value={jobExperienceTitle}
             onChange={handleChange}
           />
@@ -39,22 +40,22 @@ function Card({
           <p>
             <label htmlFor="">Company</label>
           </p>
-          <input type="text" value={company} onChange={handleChange} />
+          <input type="text" value={company} name="company" onChange={handleChange} />
 
           <p>
             <label htmlFor="">Start Date</label>
           </p>
-          <input type="text" value={startJob} onChange={handleChange} />
+          <input type="text" value={startJob} name="startJob" onChange={handleChange} />
 
           <p>
             <label htmlFor="">End Date</label>
           </p>
-          <input type="text" value={endJob} onChange={handleChange} />
+          <input type="text" value={endJob} name="endJob" onChange={handleChange} />
 
           <p>
             <label htmlFor="">Location</label>
           </p>
-          <input type="text" value={companyLocation} onChange={handleChange} />
+          <input type="text" value={companyLocation} name="companyLocation" onChange={handleChange} />
 
           <p>
             <label htmlFor="">Responsibilities</label>
@@ -205,6 +206,7 @@ export default function WorkExperience() {
               startJob: startJob,
               endJob: endJob,
               companyLocation: companyLocation,
+              responsibilityArray: responsibilityArray,
             };
           } else {
             return work;
@@ -243,14 +245,20 @@ export default function WorkExperience() {
     }
   }
   function handlePushNewWork() {
+    setJobExperienceTitle(null);
+    setCompany(null);
+    setStartJob(null);
+    setEndJob(null);
+    setCompanyLocation(null);
+    setResponsibilityArray([]);
     const newWork = {
       id: Date.now(),
-      jobExperienceTitle: jobExperienceTitle,
-      company: company,
-      startJob: startJob,
-      endJob: endJob,
-      companyLocation: companyLocation,
-      responsibilityArray: responsibilityArray,
+      jobExperienceTitle: '',
+      company: '',
+      startJob: '',
+      endJob: '',
+      companyLocation: '',
+      responsibilityArray: [],
     };
     setEditId(newWork.id);
     setWorkArray([...workArray, newWork]);
@@ -275,7 +283,6 @@ export default function WorkExperience() {
           ? workArray.map((work) => {
               return (
                 <Card
-                  key={work.id}
                   id={work.id}
                   isOpen={editId === work.id ? true : false}
                   work={work}
@@ -293,6 +300,7 @@ export default function WorkExperience() {
                   responsibilityArray={responsibilityArray}
                   handleDeleteResponsibility={handleDeleteResponsibility}
                   handleResponsiblityChange={handleResponsiblityChange}
+                  key={work.id}
                 />
               );
             })
@@ -337,11 +345,11 @@ export default function WorkExperience() {
                           {work.startJob} - {work.endJob}
                         </p>
                         <ul>
-                          {work.responsibilityArray.map((responsibilityObject) => {
+                          {work.responsibilityArray.length > 0 ? work.responsibilityArray.map((responsibilityObject) => {
                             return (
                               <li key={responsibilityObject.id}>{responsibilityObject.responsibility}</li>
                             );
-                          })}
+                          }): null}
                         </ul>
                       </div>
                     </>
