@@ -15,7 +15,7 @@ export default function Profile({summary, setSummary}) {
 
   return (
     <>
-      <div className="profileDetails">
+      <div className="profileDetails fillDetailCard">
         <p className="titleOfDetails">Profile</p>
         <p>
           <label>Summary</label>

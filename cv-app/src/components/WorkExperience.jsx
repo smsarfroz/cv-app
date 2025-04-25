@@ -354,7 +354,7 @@ export default function WorkExperience({
   }
   return (
     <>
-      <div className="experienceDetails">
+      <div className="experienceDetails fillDetailCard">
         <p className="titleOfDetails">Work Experience</p>
         {workArray.length > 0
           ? workArray.map((work) => {

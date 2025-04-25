@@ -260,7 +260,7 @@ export default function Education({educationArray, setEducationArray, editId, se
   }
   return (
     <>
-      <div className="educationDetails">
+      <div className="educationDetails fillDetailCard">
         <p className="titleOfDetails">Education</p>
         {educationArray.length > 0
           ? educationArray.map((education) => {

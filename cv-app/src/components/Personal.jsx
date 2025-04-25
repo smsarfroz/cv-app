@@ -46,7 +46,7 @@ export default function Personal({
 }) {
   return (
     <>
-      <div className="personalDetails">
+      <div className="personalDetails fillDetailCard">
         <p className="titleOfDetails">Personal Details</p>
         <label>
           <p className="formLabel">Full Name</p>

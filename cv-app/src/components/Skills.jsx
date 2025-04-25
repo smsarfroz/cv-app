@@ -167,7 +167,7 @@ export default function Skills({
   }
   return (
     <>
-      <div className="skillsDetails">
+      <div className="skillsDetails fillDetailCard">
         <p className="titleOfDetails">Skills</p>
 
         {skillArray.length > 0

@@ -18,3 +18,17 @@ p.formLabel {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+body {
+  background-color: rgb(202, 202, 202);
+}
+.fillDetailCard {
+  background-color: white;
+  width: 500px;
+  padding: 1vw 1vw;
+  margin-bottom: 1vw;
+}
+.cvPreview {
+  background-color: white;
+  padding: 1vw 1vw;
+  height: fit-content;
+}
