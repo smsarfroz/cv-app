@@ -3,7 +3,7 @@ import "../App.css";
 
 function WorkExperiencePreview({
   workArray,
-  editId,
+  editIdExperience: editId,
   jobExperienceTitle,
   company,
   companyLocation,
@@ -201,7 +201,7 @@ export default function WorkExperience({
   startJob,
   endJob,
   companyLocation,
-  editId,
+  editIdExperience: editId,
   responsibilityArray,
   workArray,
 
@@ -210,7 +210,7 @@ export default function WorkExperience({
   setStartJob,
   setEndJob,
   setCompanyLocation,
-  setEditId,
+  setEditIdExperience: setEditId,
   setResponsibilityArray,
   setWorkArray,
 }) {

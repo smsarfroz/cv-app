@@ -1,7 +1,7 @@
 import React from "react";
 import "../App.css";
 
-function SkillsPreview({ skillArray, editId, skillCategory, skills }) {
+function SkillsPreview({ skillArray, editIdSkill: editId, skillCategory, skills }) {
   return (
     <div className="skillsInfo">
       <p className="sectionTitle">Technical Skills</p>
@@ -85,12 +85,12 @@ export default function Skills({
   skillCategory,
   skills,
   skillArray,
-  editId,
+  editIdSkill: editId,
 
   setSkillCategory,
   setSkills,
   setSkillArray,
-  setEditId
+  setEditIdSkill: setEditId
 }) {
   function handleChange(e) {
     const { name, value } = e.target;
