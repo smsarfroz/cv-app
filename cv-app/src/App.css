@@ -14,3 +14,7 @@ p.formLabel {
   font-size: 1.8vw;
   font-weight: bold;
 }
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}

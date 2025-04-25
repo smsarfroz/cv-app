@@ -10,6 +10,7 @@ import { PersonalPreview } from "./components/Personal";
 import { ProfilePreview } from "./components/Profile";
 import { EducationPreview } from "./components/Education";
 import { SkillsPreview } from "./components/Skills";
+import { WorkExperiencePreview } from "./components/WorkExperience";
 
 export default function App() {
   const [summary, setSummary] = useState(
@@ -29,7 +30,7 @@ export default function App() {
   const [endDate, setEndDate] = useState("2017");
   const [location, setLocation] = useState("Boston,MA");
   const newEducation = {
-    id: Date.now(),
+    id: crypto.randomUUID(),
     degree: degree,
     school: school,
     startDate: startDate,
@@ -44,14 +45,53 @@ export default function App() {
     "JavaScript , TypeScript , Python , Java , SQl"
   );
   const newSkill = {
-    id: Date.now(),
+    id: crypto.randomUUID(),
     skillCategory: skillCategory,
     skills: skills,
   };
   const [skillArray, setSkillArray] = useState([newSkill]);
   const [editIdSkill, setEditIdSkill] = useState(null);
+
+  const [jobExperienceTitle, setJobExperienceTitle] = useState(
+    "Senior Software Developer"
+  );
+  const [company, setCompany] = useState("Tech Innovations");
+  const [startJob, setStartJob] = useState("January 2020");
+  const [endJob, setEndJob] = useState("Present");
+  const [companyLocation, setCompanyLocation] = useState("San Francisco,CA");
+  const [editIdExperience, setEditIdExperience] = useState(null);
+  // const [responsibilityState, setResponsibilityState] = useState('');
+  const resp1 = {
+    id: crypto.randomUUID(),
+    responsibility:
+      "Led a team of 5 developers to deliver high-quality web applications",
+  };
+  const resp2 = {
+    id: crypto.randomUUID(),
+    responsibility:
+      "Implemented CI/CD pipelines that reduced deployment time by 40%",
+  };
+  const resp3 = {
+    id: crypto.randomUUID(),
+    responsibility: "Refactored legacy codebase, improving performance by 30%",
+  };
+  const [responsibilityArray, setResponsibilityArray] = useState([
+    resp1,
+    resp2,
+    resp3,
+  ]);
+  const newWork = {
+    id: crypto.randomUUID(),
+    jobExperienceTitle: jobExperienceTitle,
+    company: company,
+    startJob: startJob,
+    endJob: endJob,
+    companyLocation: companyLocation,
+    responsibilityArray: responsibilityArray,
+  };
+  const [workArray, setWorkArray] = useState([newWork]);
   return (
-    <>
+    <div className="container">
       <div className="inputDetails">
         <Personal 
           fullName={fullName}
@@ -74,7 +114,7 @@ export default function App() {
           educationArray={educationArray}
           editId={editId}
           degree={degree}
-          schoool={school}
+          school={school}
           startDate={startDate}
           endDate={endDate}
           location={location}
@@ -90,16 +130,35 @@ export default function App() {
 
         <Skills 
           skillCategory={skillCategory}
-          setSkillCategory={setSkillCategory}
           skills={skills}
-          setSkills={setSkills}
           skillArray={skillArray}
-          setSkillArray={setSkillArray}
           editIdSkill={editIdSkill}
+          
+          setSkillCategory={setSkillCategory}
+          setSkills={setSkills}
+          setSkillArray={setSkillArray}
           setEditIdSkill={setEditIdSkill}
         />
 
-        <WorkExperience />
+        <WorkExperience 
+          jobExperienceTitle={jobExperienceTitle}
+          company={company}
+          startJob={startJob}
+          endJob={endJob}
+          companyLocation={companyLocation}
+          editIdExperience={editIdExperience}
+          responsibilityArray={responsibilityArray}
+          workArray={workArray}
+
+          setJobExperienceTitle={setJobExperienceTitle}
+          setCompany={setCompany}
+          setStartJob={setStartJob}
+          setEndJob={setEndJob}
+          setCompanyLocation={setCompanyLocation}
+          setEditIdExperience={setEditIdExperience}
+          setResponsibilityArray={setResponsibilityArray}
+          setWorkArray={setWorkArray}
+        />
       </div>
 
       <div className="cvPreview">
@@ -116,7 +175,7 @@ export default function App() {
           educationArray={educationArray}
           editId={editId}
           degree={degree}
-          schoool={school}
+          school={school}
           startDate={startDate}
           endDate={endDate}
           location={location}
@@ -127,8 +186,17 @@ export default function App() {
           skillCategory={skillCategory}
           skills={skills}
         />
-        {/* <WorkExperience /> */}
+        <WorkExperiencePreview
+          workArray={workArray}
+          editIdExperience={editIdExperience}
+          jobExperienceTitle={jobExperienceTitle}
+          company={company}
+          companyLocation={companyLocation}
+          responsibilityArray={responsibilityArray}
+          startJob={startJob}
+          endJob={endJob}
+        />
       </div>
-    </>
+    </div>
   );
 }
