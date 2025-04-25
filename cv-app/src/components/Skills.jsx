@@ -74,7 +74,7 @@ function Card({
           <h2>{skill.skillCategory}:</h2>
           <p>{skill.skills}</p>
           <div>
-            <button onClick={() => handleEdit(skill.id)}>Edit</button>
+            <button onClick={() => handleEdit(id)}>Edit</button>
           </div>
         </>
       )}
@@ -82,14 +82,15 @@ function Card({
   );
 }
 export default function Skills({
-  skillArray,
-  editId,
   skillCategory,
   skills,
-  setSkillArray,
-  setEditId,
+  skillArray,
+  editId,
+
   setSkillCategory,
   setSkills,
+  setSkillArray,
+  setEditId
 }) {
   function handleChange(e) {
     const { name, value } = e.target;
@@ -120,7 +121,7 @@ export default function Skills({
     }
     setSkillCategory("");
     setSkills("");
-  }
+    }
   function handleSave() {
     if (skillCategory.trim() !== "" && skills.trim() !== "") {
       if (editId !== null) {
@@ -183,10 +184,10 @@ export default function Skills({
                   skillCategory={skillCategory}
                   skills={skills}
                   skill={skill}
-                  setEditId={setEditId}
                   isOpen={editId === skill.id ? true : false}
                   setSkillCategory={setSkillCategory}
                   setSkills={setSkills}
+                  setEditId={setEditId}
                 />
               );
             })
